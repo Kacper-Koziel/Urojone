@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liczby urojone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <!-- <div class="blank" id="intro-container">
+        <div class="intro" id="intro">
+            <p class="intro-text" id="intro-text"> </p>
+            <p class="intro-message" id="intro-message">Naciśnij spację aby kontynuować</p>
+        </div>
+    </div> -->
+    
+    <nav>
+        <div class="title">
+            <a href="#" class="hidden" id="navTitle">Załamanie Rzeczywistości: Liczby Urojone</a>
+        </div>
+
+        <div class="subpages">
+            <a href="../Zespolone/index.html">Liczby zespolone</a>
+            <a href="../Działania/index.html">Działania</a>
+            <a href="../ZagadnieniaMenu/index.html">Zagadnienia</a>
+            <a href="../Sources/index.html">Źródła</a>
+        </div>
+    </nav>
+
+    <div class="title-container" id="title">
+        <div class="text">
+            <h1>Załamanie Rzeczywistości: Liczby Urojone</h1>
+        </div>
+        <div class="button">
+            <a href="#" onclick="scrollToContent(); return false;">Zaczynamy</a>
+        </div>
+    </div>
+
+    <div class="main">
+
+        <div class="buttons" id="buttonsMenu">
+            <div class="up" onclick="scrollToTop(); return false;">
+              <i class="fas fa-arrow-up"></i>
+              <span class="button-text">Do góry</span>
+            </div>
+
+            <div class="next">
+                <a href="../Zespolone/index.html">
+                <span class="button-text">Następna strona</span>
+                <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    
+
+        <div class="first-info shown" name="firstBox">
+            <div class="text shown" name="firstBox">
+                <h1 name="firstBox" class="shown">Liczby Urojone</h1>
+                <h3 name="firstBox" class="shown">
+                    Liczby urojone (u) specjalne przypadki <a href="#">liczb zespolonych</a>, w których część rzeczywista wynosi 0.
+                    Składają się one z liczby rzeczywistej (b) określającej ilość jednostek urojonych i.
+                    <br>Do liczb urojonych należą: 3i, 5i, -2i.
+                </h3>
+            </div>
+
+            <div class="image shown" name="firstBox">
+                <img src="../Assets/MainAssets/Photos/lUroj.png" alt="Urojone imgae">
+            </div>
+        </div>
+
+        <div class="first-info shown" name="secondBox">
+            <div class="text shown" name="secondBox">
+                <h1 name="secondBox" class="shown">Jednostka <br> urojona i</h1>
+                <h3 name="secondBox" class="shown">
+                    Jednostka urojona (i), to liczba która nie należy do zbioru liczb rzeczywistych.
+                    Z definicji spełnia równanie: i² = -1, z którego wynika, że i = √-1. 
+                    Jendostka ta zmieniła matematykę umożliwiając operowanie na pierwiastkach liczb ujemnych i tworzenie liczb zespolonych.
+                </h3>
+            </div>
+
+            <div class="image shown" name="secondBox">
+                <img src="../Assets/MainAssets/Photos/i2=-1.png" alt="i2=1 image">
+            </div>
+        </div>
+        
+        <div class="make-wrapper shown" name="maker">
+            <h1 class="make-label shown" name="maker">Oblicz kwadrat swojej liczby urojonej</h1>
+            <div class="make-imag-container shown" name="maker">
+                <form>
+                    <h1 class="shown" name="maker">(<input type="text" id="num" name="num" placeholder="x"> i)² = <p id="result" class="result"> </p></h1>
+                </form>
+            </div>
+            <div class="shown" name="maker">
+                <form>
+                    <input type="submit" value="Oblicz" onclick="calculatePower(); return false;">
+                </form>
+            </div>
+        </div>
+
+        <div id="complexPlot" class="complexPlot"></div>
+
+    <script>
+        const points = [];
+
+        for(let i = -1000; i <= 1000; i++)
+        {
+            points.push(i);
+        }
+
+        let trace = {
+            x: new Array(points.length).fill(0),
+            y: points,
+            mode: 'lines+markers',
+            type: 'scatter',
+            name: 'liczby urojone',
+            line: {color: '#00d7fd', width: 3},
+            hoverinfo: 'none'
+        };
+
+        let layout = {
+            font: {color: '#00d7fd', size: 16},
+            plot_bgcolor: 'rgba(1, 19, 33, 1)',
+            paper_bgcolor: 'rgba(0, 0, 0, 0.3)',
+            title: 'Wykres liczb urojonych na płaszczyźnie zespolonej',
+            xaxis: {
+                title: 'Oś Rzeczywista'
+            },
+            yaxis: {
+                title: 'Oś Urojona',
+                ticksuffix: 'i'
+            },
+            autosize: true,
+            height: 800,
+            width: 1500
+        }
+
+
+        Plotly.newPlot('complexPlot', [trace], layout);
+
+        window.onresize = function () {
+        Plotly.Plots.resize(document.getElementById('complexPlot'));
+    };
+    </script>
+
+    <div class="plot-expl-wrapper shown" name="plotExpl">
+        <div class="text shown" name="plotExpl">
+            <h1>Wytłumaczenie wykresu</h1>
+        </div>
+        <div class="plot-expl shown" name="plotExpl">
+            <h2>Z wykresu możemy zauważyć, że dla każdej liczby urojonej, czynnik rzeczywisy wynosi 0</h2>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!-- Sources:
+    https://byc-matematykiem.pl/urojone/
+    https://wallspic.com
+-->

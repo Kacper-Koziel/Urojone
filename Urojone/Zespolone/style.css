@@ -1,0 +1,701 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins;
+}
+
+html, body{
+    scroll-behavior: smooth;
+    height: 100%;
+    font-size: 16px;
+}
+
+nav {
+    position: fixed;
+    width: 100%;
+    height: 5rem;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(5px) brightness(0.95);
+    border-bottom: 2px solid #9e9898;
+    z-index: 10;
+}
+
+nav .title a.hidden{
+    transform: translateX(-3rem);
+    opacity: 0;
+    transition: transform 1s ease;
+}
+
+nav .title a.display{
+    display: block;
+    margin-left: 1rem;
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 600;
+    background-image: url(../Assets/MainAssets/Photos/titleFont.jpg);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-decoration: none;
+    transform: translateX(0);
+    opacity: 1;
+    transition: transform 1.25s ease, opacity 1s ease;
+}
+
+nav .subpages {
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+nav .subpages a{
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #9e9898;
+    position: relative;
+    transition: color 0.5s ease;
+}
+
+nav .subpages a::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #9a41c1;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s ease;
+}
+
+nav .subpages a:hover{
+    color: #9a41c1;
+}
+
+nav .subpages a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+
+.title-container {
+    width: 100%;
+    height: 100%;
+    background: url(../Assets/ZespoloneAssets/titleBackground.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-container h1{
+    font-size: 5rem;
+    font-weight: 600;
+    font-family: Raleway;
+    background-image: url(../Assets/MainAssets/Photos/titleFont.jpg);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.title-container .button{
+    margin-top: 10rem;
+}
+
+.title-container .button a{
+    font-size: 2.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    color: #9e9898;
+    padding: 2rem 3rem;
+    border: 2px solid #9e9898;
+    border-radius: 70px;
+    transition: border-color 0.7s ease, color 0.7s ease, background-color 0.7s ease;
+}
+
+.title-container .button a:hover{
+    border-color: white;
+    color: white;
+    background-color: rgba(192, 192, 192, 0.2);
+}
+
+.main {
+    position: relative;
+    padding-top: 8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 16rem;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    width: 100%;
+    background: url(../Assets/ZespoloneAssets/mainBackground.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding-bottom: 16rem;
+    overflow-x: hidden;
+}
+
+.main .first-info{
+    width: 80%;
+    height: 35rem;
+    border: 5px solid #9a41c1;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #000f30;
+}
+
+.main .first-info .text {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: -3rem;
+}
+
+.main .first-info .text h1{
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: #9a41c1;
+}
+
+.main .first-info .text a{
+    text-decoration: none;
+    color: red;
+}
+
+.main .first-info .text h3{
+    margin-left: 1rem;
+    font-size: 1.3rem;
+    color: white;
+}
+
+.main .first-info .image{
+    margin-right: -3rem;
+    height: 70%;
+    width: 40%;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 3px solid #9a41c1;
+}
+
+.main .first-info .image img{
+    width: 100%;
+    height: 100%;
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateX(-5rem);
+    transition: opacity 0.7s ease, transform 1.25s ease;
+}
+
+.shown {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 1s ease, transform 1.25s ease;
+}
+
+.main .buttons {
+    display: none; 
+}
+  
+.main .buttons .up {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    border: 3px solid rgba(154, 65, 193, 0.5);
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    width: 5rem;
+    background-color: rgba(154, 65, 193, 0.1);
+    cursor: pointer;
+    transition: width 0.3s ease; 
+    overflow: hidden; 
+    z-index: 100;
+}
+
+.main .buttons .up i {
+    color: white;
+    font-size: 2rem;
+}
+
+.main .buttons .up .button-text {
+    opacity: 0;
+    width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    color: white;
+    font-size: 1.5rem;
+    transition: width 0.3s ease, opacity 0.3s ease;
+    margin-left: 0;
+}
+
+.main .buttons .up:hover {
+    width: 12rem; 
+}
+
+.main .buttons .up:hover .button-text {
+    width: 6rem;
+    opacity: 1;
+    margin-left: 1rem; 
+}
+
+.main .next {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid rgba(154, 65, 193, 0.5);
+    border-radius: 50px;
+    background-color: rgba(154, 65, 193, 0.1);
+    width: 5rem;
+    height: 5rem;
+    cursor: pointer;
+    overflow: hidden;
+    transition: width 0.4s ease;
+    z-index: 100;
+}
+
+.main .next a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.main .next .button-text {
+    opacity: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    color: white;
+    font-size: 1.5rem;
+    transition: opacity 0.4s ease, margin-right 0.4s ease;
+}
+
+.main .next i {
+    color: white;
+    font-size: 2rem;
+    margin-left: -12.5rem;
+    transition: margin-left 0.4s ease;
+}
+
+.main .next:hover {
+    width: 20rem;
+}
+
+.main .next:hover .button-text {
+    opacity: 1;
+    margin-right: 10px;
+}
+
+.main .next:hover i {
+    margin-left: 10px;
+}
+
+
+.main .changeToR-wrapper {
+    height: 20rem;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main .changeToR-wrapper .label {
+    width: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -2rem;
+    margin-left: 4rem;
+    z-index: 2;
+}
+
+.main .changeToR-wrapper .label h1{
+    color: #9a41c1;
+    background-color: #000f30;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    border: 2px solid #9a41c1;    
+}
+
+.main .changeToR-wrapper .changeToR{
+    height: 12rem;
+    width: 100%;
+    background-color: #000f30;
+    border-radius: 100px;
+    border: 2px solid #9a41c1; 
+    display: flex;
+    align-items: center; 
+}
+
+.main .changeToR-wrapper .changeToR h1 {
+    color: white;
+    display: flex;
+    flex-direction: row;
+}
+
+.main .changeToR-wrapper .changeToR input[type="text"] {
+    margin-left: 3rem;
+    outline: none;
+    border: none;
+    height: 3rem;
+    width: 20rem;
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    background-color: #000f30;
+    border-bottom: 2px solid #9a41c1;
+}
+
+.main .changeToR-wrapper .changeToR input[type="text"]:focus {
+    background-color: #000f30;
+}
+
+.main .changeToR-wrapper input[type="submit"] {
+    background-color: #000f30;
+    color: #9a41c1;
+    height: 6rem;
+    width: 15rem;
+    font-size: 2rem;
+    font-weight: 600;
+    border: 2px solid #9a41c1;  
+    border-radius: 50px;
+    margin-top: -3rem;
+    z-index: 2;
+    margin-left: 70rem;
+    transition: transform 0.7s ease;
+    cursor: pointer;
+}
+
+.main .changeToR-wrapper input[type="submit"]:hover{
+    transform: scale(1.15);
+}
+
+.main .addToPlot-wrapper {
+    height: 20rem;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main .addToPlot-wrapper .label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+}
+
+.main .addToPlot-wrapper .label h1{
+    color: #9a41c1;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    background-color: #000f30;
+    border: 2px solid #9a41c1;
+    margin-bottom: -2rem;
+    z-index: 2;
+    margin-right: -5rem;
+}
+
+
+.main .addToPlot-wrapper .addToPlot {
+    background-color: #000f30;
+    height: 12rem;
+    width: 100%;
+    border-radius: 100px;
+    border: 2px solid #9a41c1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main .addToPlot-wrapper .addToPlot input[type="text"] {
+    margin-left: 3rem;
+    outline: none;
+    border: none;
+    height: 3rem;
+    width: 20rem;
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    background-color: #000f30;
+    border-bottom: 2px solid #9a41c1;
+}
+
+.main .addToPlot-wrapper input[type="submit"] {
+    background-color: #000f30;
+    color: #9a41c1;
+    height: 6rem;
+    width: 15rem;
+    font-size: 2rem;
+    font-weight: 600;
+    border: 2px solid #9a41c1;  
+    border-radius: 50px;
+    margin-top: -3rem;
+    z-index: 2;
+    margin-left: 70rem;
+    transition: transform 0.7s ease;
+    cursor: pointer;
+}
+
+.main .addToPlot-wrapper input[type="submit"]:hover{
+    transform: scale(1.15);
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    nav .subpages {
+        width: 80%;
+        gap: 1rem;
+    }
+
+    nav .subpages a {
+        font-size: 1.5rem;
+    }
+
+    nav .title a.display{
+        font-size: 1.5rem;
+    }
+
+    .title-container {
+        width: 100%;
+    }
+
+    .title-container .text {
+        text-align: center;
+    }
+
+    .first-info.shown {
+        height: 30rem;
+        width: 95%;
+    }
+
+    .first-info.shown .text.shown h3{
+        font-size: 1rem;
+        
+    }
+
+    .first-info.shown .text.shown h1[name="firstBox"]{
+        margin-left: 1rem;
+    }
+
+    .first-info.shown .text.shown h1[name="secondBox"]{
+        margin-left: 1rem;
+        font-size: 2.3rem;
+    }
+
+    .changeToR-wrapper.shown {
+        width: 100%;
+    }
+
+    .changeToR-wrapper.shown .label.shown {
+        margin-left: -2rem;
+        width: 80%;
+    }
+
+    .changeToR-wrapper.shown .label.shown h1 {
+        font-size: 1.5rem;
+    }
+
+    .changeToR-wrapper.shown .changeToR.shown {
+        width: 100%;
+    }
+
+    .changeToR-wrapper.shown input[type="submit"] {
+        margin-left: 70%;
+    }
+
+    .addToPlot-wrapper.shown {
+        width: 100%;
+    }
+
+    .addToPlot-wrapper.shown .label {
+        margin-left: 5rem;
+        width: 80%;
+    }
+
+    .addToPlot-wrapper.shown input[type="submit"] {
+        margin-left: 70%;
+    }
+}
+
+@media screen and (min-width: 1100px) and (max-width: 1500px) {
+    .first-info.shown .text.shown h1[name="secondBox"]{
+        margin-left: -2rem;
+    }
+}
+
+@media screen and (min-width: 1300px) and (max-width: 1500px){
+    .first-info.shown .text.shown h1[name="secondBox"]{
+        margin-left: -4rem;
+    }
+}
+
+
+
+@media screen and (min-width: 1400px) and (max-width: 1500px){
+    nav .subpages a {
+        font-size: 1.8rem;
+    }
+    .first-info.shown .text.shown h1[name="secondBox"]{
+        margin-left: -6rem;
+    }
+
+    .first-info.shown .text.shown h1[name="firstBox"]{
+        margin-left: -2rem;
+    }
+}
+
+@media screen and (min-width: 1440px) and (max-width: 1919px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    nav .subpages {
+        width: 50%;
+    }
+
+    nav .subpages a {
+        font-size: 1.8rem;
+    }
+
+    nav .title a.display{
+        font-size: 1.8rem;
+    }
+
+    .title-container {
+        width: 100%;
+    }
+
+    .title-container .text {
+        text-align: center;
+    }
+
+    .first-info.shown {
+        height: 35rem;
+        width: 80%;
+    }
+
+    .first-info.shown .text.shown h3{
+        font-size: 1rem;
+        
+    }
+
+    .first-info.shown .text.shown h1[name="firstBox"]{
+        margin-left: 1rem;
+    }
+
+    .first-info.shown .text.shown h1[name="secondBox"]{
+        margin-left: 1rem;
+    }
+
+    .changeToR-wrapper.shown {
+        width: 80%;
+    }
+
+    .changeToR-wrapper.shown .label.shown {
+        margin-left: -2rem;
+        width: 80%;
+    }
+
+    .changeToR-wrapper.shown .changeToR.shown {
+        width: 100%;
+    }
+
+    .changeToR-wrapper.shown input[type="submit"] {
+        margin-left: 70%;
+    }
+
+    .addToPlot-wrapper.shown {
+        width: 80%;
+    }
+
+    .addToPlot-wrapper.shown .label {
+        margin-left: 5rem;
+        width: 80%;
+    }
+
+    .addToPlot-wrapper.shown input[type="submit"] {
+        margin-left: 70%;
+    }
+}
+
+
+@media screen and (min-width: 1680px){
+    .first-info.shown .text.shown h1[name="firstBox"]{
+        margin-left: 1rem;
+    }
+
+}
+
+
+@media screen and (min-width: 1820px){
+    .first-info.shown .text.shown h1[name="firstBox"]{
+        margin-left: 0rem;
+    }
+}
+
+@media screen and (min-width: 2560px){
+    
+    .first-info.shown .text.shown h1[name="firstBox"]{
+        margin-left: -10rem;
+    }
+    
+    .first-info.shown .text.shown h1[name="secondBox"]{
+        margin-left: 1rem;
+    }
+
+    .changeToR-wrapper.shown .label.shown {
+        margin-left: -20rem;
+        width: 80%;
+    }
+
+    .changeToR-wrapper.shown input[type="submit"] {
+        margin-left: 80%;
+    }
+
+    .addToPlot-wrapper.shown .label {
+        margin-left: -30rem;
+        width: 80%;
+    }
+
+    .addToPlot-wrapper.shown input[type="submit"] {
+        margin-left: 80%;
+    }
+}

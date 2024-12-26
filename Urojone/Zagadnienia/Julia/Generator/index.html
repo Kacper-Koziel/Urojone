@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zbiór Julii</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            cursor: grab;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+        }
+        canvas {
+            display: block;
+        }
+
+        .navigator {
+            position: fixed;
+            top: 30;
+            left: 30;
+            width: 80%;
+            height: 150px;
+            background-color: rgba(255, 255, 255, 0.5);
+            margin-left: 200px;
+            border-bottom-left-radius: 1000px;
+            border-bottom-right-radius: 1000px;
+            border-bottom: 2px solid black;
+        }
+
+        .navigator:hover, .navigator form:hover, .navigator form h1:hover, .navigator form input:hover {
+            cursor: default;
+        }
+
+        .navigator form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+        }
+
+        .navigator form h1 {
+            font-size: 30px;
+            margin-top: 10px;
+        }
+
+        .navigator input[type="text"] {
+            outline: none;
+            border: none;
+            border-bottom: 2px solid black;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.5);
+            font-size: 1.2rem;
+        }
+
+        .navigator input[type="text"]:focus {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .navigator input[type="submit"] {
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 3px solid black;
+            color: black;
+            padding: 0.5rem 2rem;
+            border-radius: 50px;
+            transition: transform 1s ease;
+            font-weight: 600;
+        }
+
+        .navigator input[type="submit"]:hover {
+            cursor: pointer;
+            transform: translateX(50px);
+        }
+    </style>
+</head>
+<body>
+    <div class="navigator">
+        <form>
+            <h1>Wpisz wartości liczby dla którego chcesz wygenerować zbiór: <input type="text" id="point" placeholder="a + bi"></h1>
+            <input type="submit" value="Generuj" onclick="getNumber(); return false;">
+        </form>
+    </div>
+    <canvas id="glCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('glCanvas');
+        const gl = canvas.getContext('webgl');
+
+        if (!gl) {
+            alert('Generator nie działa na tej przeglądarce. Wymagana jest przeglądarka z biblioteką WebGL');
+        }
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            gl.viewport(0, 0, canvas.width, canvas.height);
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const vertexShaderSource = `
+            attribute vec2 a_position;
+            void main() {
+                gl_Position = vec4(a_position, 0, 1);
+            }
+        `;
+
+        const fragmentShaderSource = `
+            precision mediump float;
+
+            uniform vec2 u_resolution;
+            uniform vec2 u_center;
+            uniform float u_zoom;
+            uniform vec2 u_c;
+            uniform int u_maxIterations;
+
+            int julia(vec2 z, vec2 c) {
+                for (int i = 0; i < 2048; i++) {
+                    z = vec2(z.x * z.x - z.y * z.y, 2.0 * z.x * z.y) + c;
+                    if (length(z) > 2.0) return i;
+                }
+                return 2048;
+            }
+
+            void main() {
+                vec2 uv = (gl_FragCoord.xy / u_resolution - 0.5) * u_zoom + u_center;
+                int value = julia(uv, u_c);
+                float t = float(value) / float(u_maxIterations);
+                
+                vec3 color = vec3(0.5 + 0.5 * cos(6.28318 * t + vec3(0.0, 0.33, 0.67)));
+                
+                float alpha = 1.0 - smoothstep(0.0, 1.0, float(value) / float(u_maxIterations));
+                gl_FragColor = vec4(color, alpha);
+            }
+        `;
+
+        function createShader(gl, type, source) {
+            const shader = gl.createShader(type);
+            gl.shaderSource(shader, source);
+            gl.compileShader(shader);
+            if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+                console.error(gl.getShaderInfoLog(shader));
+                gl.deleteShader(shader);
+                return null;
+            }
+            return shader;
+        }
+
+        const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+        const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+
+        const program = gl.createProgram();
+        gl.attachShader(program, vertexShader);
+        gl.attachShader(program, fragmentShader);
+        gl.linkProgram(program);
+
+        if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+            console.error(gl.getProgramInfoLog(program));
+        }
+
+        const vertices = new Float32Array([
+            -1, -1, 1, -1, -1, 1,
+            -1, 1, 1, -1, 1, 1,
+        ]);
+        const buffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+        gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+        const positionLocation = gl.getAttribLocation(program, "a_position");
+        gl.enableVertexAttribArray(positionLocation);
+        gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+
+        gl.useProgram(program);
+
+        const resolutionLocation = gl.getUniformLocation(program, "u_resolution");
+        const centerLocation = gl.getUniformLocation(program, "u_center");
+        const zoomLocation = gl.getUniformLocation(program, "u_zoom");
+        const cLocation = gl.getUniformLocation(program, "u_c");
+        const maxIterationsLocation = gl.getUniformLocation(program, "u_maxIterations");
+
+        let center = [0.0, 0.0];
+        let zoom = 2.0;
+        let c = [-0.8, 0.156]; 
+        let maxIterations = 512; 
+        const maxZoom = 0.001;
+
+        function getNumber()
+        {
+            let number = document.getElementById("point").value;
+
+            const regex = /^([-+]?\d*\.?\d+)\s*([+-]?)\s*(\d*\.?\d+)i$/;
+
+            let match = number.match(regex);
+
+            if(!match)
+            {
+                alert("Niepoprawna forma liczby");
+                return;
+            }
+
+            let realPart = parseFloat(match[1]);
+            let imgPart = parseFloat(match[3]);
+
+            if(realPart > 100 || realPart < -100 || imgPart > 100 || imgPart < -100)
+            {
+                alert("Liczby powinny być w zakresie -100 do 100");
+                return;
+            }
+
+            c = [realPart, imgPart];
+
+            render();
+        }
+
+        function render() {
+            gl.clear(gl.COLOR_BUFFER_BIT);
+            gl.uniform2fv(resolutionLocation, [canvas.width, canvas.height]);
+            gl.uniform2fv(centerLocation, center);
+            gl.uniform1f(zoomLocation, zoom);
+            gl.uniform2fv(cLocation, c);
+            gl.uniform1i(maxIterationsLocation, maxIterations);
+            gl.drawArrays(gl.TRIANGLES, 0, 6);
+        }
+
+        canvas.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            if (e.deltaY < 0 && zoom > maxZoom) {
+                zoom *= 0.9;
+            } else {
+                zoom *= 1.1;
+            }
+            render();
+        });
+
+        let isDragging = false;
+        let lastMouseX, lastMouseY;
+
+        canvas.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            lastMouseX = e.clientX;
+            lastMouseY = e.clientY;
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                const dx = (e.clientX - lastMouseX) / canvas.width * zoom;
+                const dy = (e.clientY - lastMouseY) / canvas.height * zoom;
+                center[0] -= dx;
+                center[1] += dy;
+                lastMouseX = e.clientX;
+                lastMouseY = e.clientY;
+                render();
+            }
+        });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowUp') {
+                maxIterations = Math.max(maxIterations - 32, 32);
+            } else if (e.key === 'ArrowDown') {
+                maxIterations = Math.min(maxIterations + 32, 1024);
+            }
+            render();
+        });
+
+        canvas.addEventListener('mousedown', () => {
+            canvas.style.cursor = 'grabbing';
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            canvas.style.cursor = 'grab';
+        });
+
+        canvas.addEventListener('mouseleave', () => {
+            canvas.style.cursor = 'grab';
+        });
+
+        render();
+    </script>
+</body>
+</html>
