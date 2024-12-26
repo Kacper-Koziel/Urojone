@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liczby zespolone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <nav>
+        <div class="title">
+            <a href="../Main/index.html" class="hidden" id="navTitle">Załamanie Rzeczywistości: Liczby Urojone</a>
+        </div>
+
+        <div class="subpages">
+            <a href="#">Liczby zespolone</a>
+            <a href="../Działania/index.html">Działania</a>
+            <a href="../ZagadnieniaMenu/index.html">Zagadnienia</a>
+            <a href="../Sources/index.html">Źródła</a>
+        </div>
+    </nav>
+
+    <div class="title-container" id="title">
+        <div class="text">
+            <h1>Załamanie Rzeczywistości: Liczby Zespolone</h1>
+        </div>
+        <div class="button">
+            <a href="#" onclick="scrollToContent(); return false;">Pokaż więcej</a>
+        </div>
+    </div>
+
+    <div class="main">
+
+        <div class="buttons" id="buttonsMenu">
+            <div class="up" onclick="scrollToTop(); return false;">
+              <i class="fas fa-arrow-up"></i>
+              <span class="button-text">Do góry</span>
+            </div>
+
+            <div class="next">
+                <a href="../Działania/index.html">
+                <span class="button-text">Następna strona</span>
+                <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="first-info shown" name="firstBox">
+            <div class="text shown" name="firstBox">
+                <h1 name="firstBox" class="shown">Liczby Zespolone</h1>
+                <h3 name="firstBox" class="shown">
+                    Liczby zespolone (z) należą do zbioru liczb zespolonych który stanowi rozszerzenie zbioru liczb rzeczywistych.
+                    Składają się one z części rzeczywistej (a) oraz <a href="../Main/index.html">urojonej</a> (bi), gdzie i to jednostka urojona. <br>
+                    Przykładami mogą być: 2 + 3i, -5 - i, <br> 0 + 3i.
+                </h3>
+            </div>
+
+            <div class="image shown" name="firstBox">
+                <img src="../Assets/ZespoloneAssets/zEquat.png" alt="Urojone imgae">
+            </div>
+        </div>
+
+        <div class="first-info shown" name="secondBox">
+            <div class="text shown" name="secondBox">
+                <h1 name="secondBox" class="shown">Zbiór Rzeczywisty vs Zespolony</h1>
+                <h3 name="secondBox" class="shown">
+                    Zbiór liczb rzeczywistych składający się z liczb wymiernych, niewymiernych oraz całkowitych jest podzbiorem 
+                    zbioru liczb zespolonych. Oznacza to że liczby rzeczywiste są specjalnym przypadkiem liczb zespolonych gdzie część
+                    urojona (bi) wynosi 0.
+                </h3>
+            </div>
+
+            <div class="image shown" name="secondBox">
+                <img src="../Assets/ZespoloneAssets/zbiory.png" alt="Urojone imgae">
+            </div>
+        </div>
+
+        <div class="changeToR-wrapper shown" name="change">
+            <div class="label shown" name="change">
+                <h1>Zamień swoją liczbę zespoloną na rzeczywistą</h1>
+            </div>
+
+            <div class="changeToR shown" name="change">
+                <form name="change">
+                    <h1 class="shown" name="change"><input type="text" id="number" placeholder="a + bi"> => <p id="result"></p></h1>
+                </form>
+            </div>
+
+            <div class="shown" name="change">
+                <form>
+                    <input type="submit" value="Zamień" onclick="toRealNumber(); return false;">
+                </form>
+            </div>
+        </div>
+        
+        <div class="plot" id="plot"></div>
+
+        <script>
+            let points = [];
+        
+            function updatePlot() {
+                const realNumbers = points.map(n => n.real);
+                const imaginaryNumbers = points.map(n => n.imaginary);
+                const labels = points.map(n => `${n.real} ${n.imaginary >= 0 ? '+' : ''}${n.imaginary}i`);
+        
+                const trace = {
+                    x: realNumbers,
+                    y: imaginaryNumbers,
+                    mode: 'markers+text',
+                    text: labels,
+                    textposition: 'top center',
+                    marker: {
+                        color: '#9a41c1',
+                        size: 10
+                    }
+                };
+        
+                const layout = {
+                    title: 'Płaszczyzna Zespolona',
+                    xaxis: {
+                        title: 'Re (część rzeczywista)',
+                        zeroline: true
+                    },
+                    yaxis: {
+                        title: 'Im (część urojona)',
+                        zeroline: true
+                    },
+                    height: 800,
+                    width: 1720,
+                    plot_bgcolor: '#000f30',
+                    paper_bgcolor: '#000f30',
+                    font: {color: '#FFFFFF'}
+                };
+        
+                Plotly.newPlot('plot', [trace], layout);
+            }
+        
+            function addComplexNumber() {
+                const input = document.getElementById("plotInput").value.trim();
+                const complexRegex = /^([\d.-]+)\s*([+-])\s*(\d+)\s*i$/;
+                const match = input.match(complexRegex);
+
+                if (match) {
+                    const re = parseFloat(match[1]);
+                    const sign = match[2];
+                    const im = parseFloat(match[3]) * (sign === '+' ? 1 : -1);
+        
+                    points.push({ real: re, imaginary: im });
+        
+                    updatePlot();
+        
+                    document.getElementById("plotInput").value = "";
+                } else {
+                    alert("Podaj liczbę zespoloną w formie a + bi lub a - bi");
+                }
+            }
+        
+            updatePlot();
+        </script>
+        
+        <div class="addToPlot-wrapper shown" name="add">
+            <div class="label shown" name="add">
+                <h1>Dodaj nowy punkt do wykresu</h1>
+            </div>
+            <div class="addToPlot">
+                <h1 class="shown" name="add"><input type="text" id="plotInput" placeholder="a + bi"> <p id="result"></p></h1>
+            </div>
+
+            <div class="shown" name="add">
+                <form>
+                    <input type="submit" value="Dodaj" onclick="addComplexNumber(); scrollToPlot(); return false;">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+<!-- Sources: 
+ https://pl.wikibooks.org/wiki/Plik:Zbiory_liczbowe.png
+  -->

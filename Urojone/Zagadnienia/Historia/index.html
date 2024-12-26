@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="title">
+            <a href="../Main/index.html" class="hidden" id="navTitle">Załamanie Rzeczywistości: Liczby Urojone</a>
+        </div>
+
+        <div class="subpages">
+            <a href="../../Zespolone/index.html">Liczby zespolone</a>
+            <a href="../../Działania/index.html">Działania</a>
+            <a href="../../ZagadnieniaMenu/index.html">Zagadnienia</a>
+            <a href="../../Sources/index.html">Źródła</a>
+        </div>
+    </nav>
+
+    <div class="title-container" id="title">
+        <div class="text">
+            <h1>Załamanie Rzeczywistości: Historia</h1>
+        </div>
+        <div class="button">
+            <a href="#" onclick="scrollToContent(); return false;">Pokaż więcej</a>
+        </div>
+    </div>
+
+    <div class="main">
+
+        <div class="buttons" id="buttonsMenu">
+            <div class="up" onclick="scrollToTop(); return false;">
+              <i class="fas fa-arrow-up"></i>
+              <span class="button-text">Do góry</span>
+            </div>
+
+            <div class="next">
+                <a href="../Mandelbrot/index.html">
+                <span class="button-text">Następna strona</span>
+                <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="first-info shown" name="firstBox">
+            <div class="text shown" name="firstBox">
+                <h1 name="firstBox" class="shown" style="margin-left: 1rem;">Początki liczb zespolonych</h1>
+                <h3 name="firstBox" class="shown">
+                    Pierwszym systematycznym badaczem liczb "dziwnych" był Rafael Bombelli. W książce L'Algebra zdefiniował reguły operacji na liczbach zespolonych.
+                    Przed jego regułami, pierwiastki liczb ujemnych uważane były za niewykonalne.
+                </h3>
+            </div>
+
+            <div class="image shown" name="firstBox">
+                <img src="../../Assets/HistoryAssets/Algebra.jpg" alt="Trygonometryczna">
+            </div>
+        </div>
+
+        <div class="first-info shown" name="secondBox">
+            <div class="text shown" name="secondBox">
+                <h1 name="secondBox" class="shown" style="margin-left: 1rem;">Wprowadzenie terminu "liczby urojone"</h1>
+                <h3 name="secondBox" class="shown">
+                    W 1637 roku René Descartes wprowadził termin "liczby urojone". Uważał je jednak za abstrakcję nie posiadającego rzeczywistego znaczenia
+                </h3>
+            </div>
+
+            <div class="image shown" name="secondBox">
+                <img src="../../Assets/HistoryAssets/nombries.png" alt="Trygonometryczna">
+            </div>
+        </div>
+
+        <div class="first-info shown" name="thirdBox">
+            <div class="text shown" name="thirdBox">
+                <h1 name="thirdBox" class="shown" id="def">Definicja jednostki i</h1>
+                <h3 name="thirdBox" class="shown">
+                    Leonhard Euler w XVIII wieku, zdefiniował liczbę i nadając jej bardziej formalny charakter. Kluczowy w tym był <a href="../Euler/index.html">wzór Eulera</a>
+                    który ukazał głębokie powiązania między liczbami zespolonymi a trygonometrią i analizą matematyczną.
+                </h3>
+            </div>
+
+            <div class="image shown" name="thirdBox">
+                <img src="../../Assets/EulerAssets/ptrygE.png" alt="Trygonometryczna">
+            </div>
+        </div>
+
+        <div class="first-info shown" name="fourthBox">
+            <div class="text shown" name="fourthBox">
+                <h1 name="fourthBox" class="shown" style="margin-left: 1rem;">Wprowadzenie płaszczyzny zespolonej</h1>
+                <h3 name="fourthBox" class="shown">
+                    W 1799 Caspar Wessel przedstawił liczby zespolone w postaci graficznej na płaszczyźnie.
+                    Płaszczyzna ta, znana dziś jako płaszczyzna Arganda, która została później rozwinięta przez Jean-Roberta Arganda i Gaussa.
+                </h3>
+            </div>
+
+            <div class="image shown" name="fourthBox">
+                <img src="../../Assets/HistoryAssets/zespolona.png" alt="Trygonometryczna" style="background-color: white;">
+            </div>
+        </div>
+
+        <div class="first-info shown" name="fifthBox">
+            <div class="text shown" name="fifthBox">
+                <h1 name="fifthBox" class="shown" style="margin-left: 1rem;">Nabycie pełnego statusu matematycznego</h1>
+                <h3 name="fifthBox" class="shown">
+                    Carl Friedrich Gauss w XIX w. nadał liczbą zespolonym pełen status matematyczny uznając je za rozszerzenie liczb rzeczywistych.
+                    Wprowadził termin "ciało liczb zespolonych" oraz rozwijał płaszczyznę zespoloną.
+                </h3>
+            </div>
+
+            <div class="image shown" name="fifthBox">
+                <img src="../../Assets/HistoryAssets/Gauss.png" alt="Trygonometryczna" style="background-color: white;">
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!-- Source:
+https://en.wikipedia.org/wiki/Rafael_Bombelli 
+https://pl.wikipedia.org/wiki/Carl_Friedrich_Gauss
+-->
