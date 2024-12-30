@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins;
+}
+
+html, body{
+    scroll-behavior: smooth;
+    height: 100%;
+    font-size: 16px;
+}
+
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    background-color: white;
+}
+
+nav {
+    margin-bottom: 5rem;
+    position: fixed;
+    width: 100%;
+    height: 10%;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(5px) brightness(0.95);
+    border-bottom: 2px solid #9e9898;
+    z-index: 10;
+}
+
+nav .title a.hidden{
+    transform: translateX(-3rem);
+    opacity: 0;
+    transition: transform 1s ease;
+}
+
+nav .title a.display{
+    display: block;
+    margin-left: 1rem;
+    text-decoration: none;
+    font-size: calc(0.8rem + 1vw);
+    font-weight: 600;
+    color: black;
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-decoration: none;
+    transform: translateX(0);
+    opacity: 1;
+    transition: transform 1.25s ease, opacity 1s ease;
+}
+
+nav .subpages {
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+nav .subpages a{
+    text-decoration: none;
+    font-size: calc(0.8rem + 1vw);
+    font-weight: 500;
+    color: #7a7676;
+    position: relative;
+    transition: color 0.5s ease;
+}
+
+nav .subpages a::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    background-color: black;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s ease;
+}
+
+nav .subpages a:hover{
+    color: black;
+}
+
+nav .subpages a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.blocker {
+    height: 5rem;
+    width: 100%;
+}
+
+.main {
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-image: url(../Assets/MenuAssets/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.main .row {
+    height: 30rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.main .row .circle-wrapper {
+    height: 100%;
+    width: 30rem;
+    background-color: black;
+    border-radius: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main .row .circle-wrapper .circle {
+    border-radius: 1000px;
+    height: 28rem;
+    width: 28rem;
+    border: 10px solid white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main .row .circle-wrapper .circle .text {
+    margin-bottom: 3rem;
+}
+
+.main .row .circle-wrapper .circle .text h1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.main .row .circle-wrapper .circle a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    border: 2px solid white;
+    border-radius: 75px;
+    padding: 1.4rem 2rem;
+    transition: background-color 0.7s ease, color 0.7s ease;
+}
+
+.main .row .circle-wrapper .circle a:hover{
+    background-color: white;
+    color: black;
+}
+
+@media (max-width: 1439px) {
+
+    nav .subpages {
+        width: 80%;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 980px) {
+    body::-webkit-scrollbar {
+        display: block;
+    }
+}
