@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zbiór Mandelbrota</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="title">
+            <a href="../Main/index.html" class="hidden" id="navTitle">Załamanie Rzeczywistości: Liczby Urojone</a>
+        </div>
+
+        <div class="subpages">
+            <a href="../../Zespolone/index.html">Liczby zespolone</a>
+            <a href="../../Działania/index.html">Działania</a>
+            <a href="../../ZagadnieniaMenu/index.html">Zagadnienia</a>
+            <a href="../../Sources/index.html">Źródła</a>
+        </div>
+    </nav>
+
+    <div class="title-container" id="title">
+        <div class="text">
+            <h1>Załamanie Rzeczywistości: Zbiór Mandelbrota</h1>
+        </div>
+        <div class="button">
+            <a href="#" onclick="scrollToContent(); return false;">Pokaż więcej</a>
+            <a href="Generator/index.html" target="_blank">Eksploruj Nieskończoność</a>
+        </div>
+    </div>
+
+    <div class="main">
+
+        <div class="buttons" id="buttonsMenu">
+            <div class="up" onclick="scrollToTop(); return false;">
+              <i class="fas fa-arrow-up"></i>
+              <span class="button-text">Do góry</span>
+            </div>
+
+            <div class="next">
+                <a href="../Julia/index.html">
+                <span class="button-text">Następna strona</span>
+                <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="first-info shown" name="firstBox">
+            <div class="text" name="firstBox">
+                <h1 name="firstBox" class="shown">Zbiór Mandelbrota</h1>
+                <h3 name="firstBox" class="shown">
+                    Zbiór Mandelbrota to jeden z najbardziej znanych fraktali, pierwszy raz opisany przez francusko-amerykańskiego matematyka
+                    Benoît B. Mandelbrota w 1980 roku.    
+                </h3>
+            </div>
+
+            <div class="image shown" name="firstBox">
+                <img src="../../Assets/MandelbrotAssets/zbior.png" alt="Trygonometryczna">
+            </div>
+        </div>
+
+        <div class="first-info shown" name="wz">
+            <div class="text" name="wz">
+                <h1 name="wz" class="shown">Wzór zbioru</h1>
+                <h3 name="wz" class="shown">
+                    Wzór składa się z ciągu z<sub>n</sub> oraz części c. Część c to punkt na osi zespolonej, dla którego obliczamy przynależność do zbioru.
+                    Pierwszym krokiem ciągu jest <br> z<sub>0</sub> = 0. Następne to: <br>
+                     z<sub>1</sub> = z<sub>0</sub><sup>2</sup> + c, <br>
+                     z<sub>2</sub> = z<sub>1</sub><sup>2</sup> + c, <br>
+                     I tak dalej. 
+                       
+                </h3>
+            </div>
+
+            <div class="image shown" name="wz">
+                <img src="../../Assets/MandelbrotAssets/wzor.png" alt="Trygonometryczna">
+            </div>
+        </div>
+
+        <div class="first-info shown" name="spr">
+            <div class="text" name="spr">
+                <h1 name="spr" class="shown">Sprawdzanie przynależność</h1>
+                <h3 name="spr" class="shown">
+                    W celu sprawdzenia przynależności punktu do zbioru, wykonujemy klika kroków takiego zbioru. Jeśli moduł któregoś z kroków 
+                    będzie większy od 2, punkt ten nie należy do zbioru.
+                       
+                </h3>
+            </div>
+
+            <div class="image shown" name="spr">
+                <img src="../../Assets/MandelbrotAssets/przynaleznosc.png" alt="Trygonometryczna">
+            </div>
+        </div>
+
+        <div class="check-wrapper">
+            <div class="label">
+                <h1 name="check">Sprawdź czy twój punkt należy do zbioru Mandelbrota</h1>
+            </div>
+            <div class="check" name="check">
+                <form autocomplete="off">
+                    <h1 name="check">Wpisz wartości punktu c: <input type="text" id="point" placeholder="a + bi"></h1> 
+                    <h1 name="check">Liczba kroków: <input type="text" id="iterations" placeholder="max: 6"></h1>
+                    <input type="submit" value="Sprawdź" onclick="checkIsInSet(); return false;" name="check">
+                </form>
+                <div class="results" name="check">
+                    <p id="calculations"></p>
+                    <p id="result"></p>
+                    <p style="font-size: 1.4rem; color: #cf6e2a; text-align: center;" name="check">Pamiętaj że działamy na małej liczbie kroków, wyniki nie zawsze będą poprawne</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
