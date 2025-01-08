@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pierwiastki</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="title">
+            <a href="../Main/index.html" class="hidden" id="navTitle">Załamanie Rzeczywistości: Liczby Urojone</a>
+        </div>
+
+        <div class="subpages">
+            <a href="../../Zespolone/index.html">Liczby zespolone</a>
+            <a href="../../Działania/index.html">Działania</a>
+            <a href="../../ZagadnieniaMenu/index.html">Zagadnienia</a>
+            <a href="../../Sources/index.html">Źródła</a>
+        </div>
+    </nav>
+
+    <div class="title-container" id="title">
+        <div class="text">
+            <h1>Załamanie Rzeczywistości: Pierwiastki</h1>
+        </div>
+        <div class="button">
+            <a href="#" onclick="scrollToContent(); return false;">Pokaż więcej</a>
+        </div>
+    </div>
+
+    <div class="main">
+
+        <div class="buttons" id="buttonsMenu">
+            <div class="up" onclick="scrollToTop(); return false;">
+              <i class="fas fa-arrow-up"></i>
+              <span class="button-text">Do góry</span>
+            </div>
+
+            <div class="next">
+                <a href="../Historia/index.html">
+                <span class="button-text">Następna strona</span>
+                <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="first-info shown" name="firstBox">
+            <div class="text" name="firstBox">
+                <h1 name="firstBox" class="shown">Pierwiastki liczb zespolonych</h1>
+                <h3 name="firstBox" class="shown">
+                    Pierwiastkowanie liczb zespolonych jest dość skomplikowane, dlatego poświęcam temu osobną stronę. Kluczową rolę odgrywa tu <a href="../Trygonometria/index.html">postać trygonometryczna</a>, bez której obliczenie pierwiastków nie byłoby możliwe.
+                </h3>
+            </div>
+
+            <div class="image shown" name="firstBox">
+                <img src="../../Assets/TrygonometriaAssets/trygForm.png" alt="Trygonometryczna">
+            </div>
+        </div>
+
+        <div class="first-info shown" name="wz">
+            <div class="text" name="wz">
+                <h1 name="wz" class="shown">Wzór na pierwiastek</h1>
+                <h3 name="wz" class="shown">
+                    Wzór na pierwiastki na pierwszy rzut oka, jest przerażający. Jednak potem dochodzi do nas, że wystarczy rozwiązać delikatnie bardziej
+                    skomplikowane równanie z parametrem.
+                </h3>
+            </div>
+
+            <div class="image shown" name="wz">
+                <img src="../../Assets/PierwiastkiAssets/wzor.png" alt="Trygonometryczna">
+            </div>
+        </div>
+
+        <div class="first-info shown" name="parameters">
+            <div class="text" name="parameters">
+                <h1 name="parameters" class="shown">Parametry <br> n oraz k</h1>
+                <h3 name="parameters" class="shown">
+                    W tym wzorze, parametrem n jest stopień pierwiastka (oraz ilość rozwiązań) który wykonujemy a parametr k to liczba z przedziału ilości rozwiązań.
+                    <br>Przykładowo dla n = 3 => możliwości parametru k to k = 0, k = 1, <br> k = 2.
+                </h3>
+            </div>
+
+            <div class="image shown" name="parameters">
+                <img src="../../Assets/PierwiastkiAssets/parK.png" alt="Trygonometryczna">
+            </div>
+        </div>
+
+        <div class="operationForm-wrapper shown" name="parK">
+            <div class="label shown" name="parK">
+                <h1>Oblicz wartości parametru k</h1>
+            </div>
+
+            <div class="operationForm shown" name="parK">
+                <form autocomplete="off"> 
+                    <h1 class="shown" name="parK"><input type="text" placeholder="n" id="parKInput"></h1>
+                    <p id="parKCalculations" name="parK" class="shown"></p>
+                    <p id="parKResult"></p>
+                </form>
+            </div>
+
+            <div class="shown" name="parK">
+                <form>
+                    <input type="submit" value="Oblicz" onclick="calculateParameterK(); return false;">
+                </form>
+            </div>
+        </div>
+
+        <div class="first-info shown" name="angles">
+            <div class="text" name="angles">
+                <h1 name="angles" class="shown">Zamiana kątów</h1>
+                <h3 name="angles" class="shown">
+                    Kiedy już mamy zbiór parametrów k, następnie możemy zamienić 2π na 360° (zamieniamy wtedy kiedy działamy na stopniach nie radianach). Po tej zamianie wystarczy podstawić
+                    po kolei każde z naszych k, do wzoru i obliczyć pierwiastki. 
+                </h3>
+            </div>
+
+            <div class="image shown" name="angles">
+                <img src="../../Assets/PierwiastkiAssets/podmiana.png" alt="Trygonometryczna">
+            </div>
+            
+        </div>
+
+        <div class="first-info shown" name="calc">
+            <div class="text" name="calc">
+                <h1 name="calc" class="shown">Obliczenie pierwiastków</h1>
+                <h3 name="calc" class="shown">
+                    Po podstawieniu wystarczy wykonć działania. Następnie ukarzą nam się pierwiastki liczby zespolonej.
+                    Musimy jednak pamiętać o ilimitach -180° do 180° oraz modyfikować kąty jeśli wychodzą poza te wartości.
+                </h3>
+            </div>
+
+            <div class="image shown" name="calc">
+                <img src="../../Assets/PierwiastkiAssets/obliczenia.png" alt="Trygonometryczna">
+            </div>
+        </div>
+
+        <div class="operationForm-wrapper shown" name="sinCos">
+            <div class="label shown" name="sinCos">
+                <h1>Kalulator Sinus i Cosinus</h1>
+            </div>
+
+            <div class="operationForm shown" name="sinCos">
+                <form autocomplete="off">
+                    <p id="sinCosCalculations" style="font-size: 1.5rem; color: #24d436;" name="sinCos">Podaj argument φ° w postaci dziesiętnej</p>
+                    <h1 class="shown" name="sinCos"><input type="text" placeholder="φ°" id="sinCosInput"></h1>
+                    <p id="sinCosResult"></p>
+                </form>
+            </div>
+
+            <div class="shown" name="sinCos">
+                <form>
+                    <input type="submit" value="Oblicz" onclick="calculateSinCos(); return false;">
+                </form>
+            </div>
+        </div>
+
+        <div class="big-form-wrapper shown" name="root">
+            <div class="label shown" name="root" style="margin-left: -1rem;">
+                <h1>Znajdź pierwiastki forma algebraiczna</h1>
+            </div>
+            <div class="big-form">
+                <form autocomplete="off">
+                    <h1 class="shown" name="root"> r: <input type="text" placeholder="r" id="rootRInput"> φ: <input type="text" placeholder="φ" id="rootAInput"></h1>
+                    <h1 class="shown" name="root"> <div>n:</div> <input type="text" placeholder="n" id="rootNInput"></h1>  
+                    
+                    <p id="rootCalculations" class="text"></p>
+                    <p id="rootResult" class="text"></p>
+                </form>
+            </div>
+            <div class="shown" name="root">
+                <form>
+                    <input type="submit" value="Znajdź" onclick="root(); return false;" id="subm">
+                </form>
+            </div>
+        </div>
+    
+        <div class="big-form-wrapper shown" name="rootT">
+            <div class="label shown" name="rootT" style="margin-left: 2rem;">
+                <h1>Znajdź pierwiastki forma trygonometryczna</h1>
+            </div>
+            <div class="big-form">
+                <form autocomplete="off">
+                    <h1 class="shown" name="rootT"> r: <input type="text" placeholder="r" id="rootTRInput"> φ: <input type="text" placeholder="φ" id="rootTAInput"></h1>
+                    <h1 class="shown" name="rootT"> <div>n:</div> <input type="text" placeholder="n" id="rootTNInput"></h1>  
+                    
+                    <p id="rootTCalculations" class="text"></p>
+                    <p id="rootTResult" class="text"></p>
+                </form>
+            </div>
+            <div class="shown" name="rootT">
+                <form>
+                    <input type="submit" value="Znajdź" onclick="rootT(); return false;" id="subm">
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
