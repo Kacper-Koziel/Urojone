@@ -1,0 +1,553 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins;
+}
+
+html, body{
+    scroll-behavior: smooth;
+    height: 100%;
+    font-size: 16px;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.intro-container{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../Assets/MainAssets/Photos/IntroBackground.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 1s ease-in;
+}
+
+.intro-container .intro {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12rem;
+    height: 100%;
+    backdrop-filter: brightness(0.5) blur(1px);
+}
+
+.blank{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(../Assets/MainAssets/Gif/explozionRev.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
+
+.intro-container .gif {
+    display: none;
+}
+
+.intro-container .intro .intro-text{
+    font-size: calc(1.2rem + 3vw);
+    text-align: center;
+    color: white;
+}
+
+.intro-container .intro .intro-message, .blank .intro .intro-message{
+    width: 100%;
+    height: 20%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    font-size: calc(0.8rem + 1vw);
+    transition: opacity 1s ease-in;
+}
+
+/* Nav bar */
+
+nav {
+    position: fixed;
+    width: 100%;
+    height: 10%;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(5px) brightness(0.95);
+    border-bottom: 2px solid #9e9898;
+    z-index: 10;
+}
+
+nav .title a.hidden{
+    transform: translateX(-3rem);
+    opacity: 0;
+    transition: transform 1s ease;
+}
+
+nav .title a.display{
+    display: block;
+    margin-left: 1rem;
+    text-decoration: none;
+    font-size: calc(0.8rem + 1vw);
+    font-weight: 600;
+    background-image: url(../Assets/MainAssets/Photos/titleFont.jpg);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-decoration: none;
+    transform: translateX(0);
+    opacity: 1;
+    transition: transform 1.25s ease, opacity 1s ease;
+}
+
+nav .subpages {
+    margin-right: 1rem;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    gap: calc(0.8rem + 1vw);
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav .subpages a{
+    text-decoration: none;
+    font-size: calc(0.8rem + 1vw);
+    font-weight: 500;
+    color: #9e9898;
+    position: relative;
+    transition: color 0.5s ease;
+}
+
+nav .subpages a::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #00d7fd;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s ease;
+}
+
+nav .subpages a:hover{
+    color: #00d7fd;
+}
+
+nav .subpages a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* TITLE */
+
+.title-container {
+    width: 100%;
+    height: 100%;
+    background: url(../Assets/MainAssets/Photos/titleBackground.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-container h1{
+    font-size: calc(2rem + 3vw);
+    font-weight: 600;
+    font-family: Raleway;
+    background-image: url(../Assets/MainAssets/Photos/titleFont.jpg);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-align: center;
+}
+
+.title-container .button{
+    margin-top: 10rem;
+}
+
+.title-container .button a{
+    font-size: 2.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    color: #9e9898;
+    padding: 2rem 3rem;
+    border: 2px solid #9e9898;
+    border-radius: 70px;
+    transition: border-color 0.7s ease, color 0.7s ease, background-color 0.7s ease;
+}
+
+.title-container .button a:hover{
+    border-color: white;
+    color: white;
+    background-color: rgba(192, 192, 192, 0.2);
+}
+
+/* MAIN */
+
+.main {
+    position: relative;
+    padding-top: 8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 16rem;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    width: 100%;
+    background: url(../Assets/MainAssets/Photos/mainBackground.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding-bottom: 16rem;
+    overflow-x: hidden;
+}
+
+.main .first-info{
+    width: 80%;
+    height: 55vh;
+    border: 7px dashed #00d7fd;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #011321;
+}
+
+.main .first-info .text {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.main .first-info .text h1{
+    font-size: calc(1.5rem + 1vw);
+    color: #00d7fd;
+}
+
+.main .first-info .text h3{
+    font-size: calc(0.7rem + 0.5vw);
+    color: white;
+}
+
+.main .first-info .text a{
+    text-decoration: none;
+    color: red;
+}
+
+.main .first-info .image{
+    height: 70%;
+    width: min(50%, 600px);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 3px solid #00d7fd;
+}
+
+.main .first-info .image img{
+    width: 100%;
+    height: 100%;
+}
+
+
+.main .make-wrapper{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 35vh;
+    width: 100%;
+}
+
+.main .make-wrapper .make-label{
+    color: #00d7fd;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    background-color: #011321;
+    padding: 0.5rem 1rem;
+    border: 2px solid rgba(0, 215, 253, 0.5);
+    border-radius: 50px;
+    font-size: calc(1rem + 1vw);
+}
+
+.main .make-imag-container{
+    width: 80%;
+    height: 20vh;
+    border-radius: 100px;
+    background-color: #011321;
+    border: 3px solid rgba(0, 215, 253, 0.5);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+}
+
+.main .make-imag-container form{
+    margin-left: 5%;
+}
+
+.main .make-imag-container h1{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: calc(1rem + 1.2vw);
+}
+
+.main .make-imag-container input[type="text"]{
+    text-align: end;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    border-bottom: 2px solid white;
+    font-weight: bold;
+    width: 5rem;
+    height: 3rem;
+    font-size: calc(1rem + 1.2vw);
+}
+
+
+.main .make-imag-container .result{
+    color: white;
+    font-weight: bold;
+    font-size: calc(1rem + 1.2vw);
+}
+
+.main .make-wrapper input[type="submit"] {
+    position: absolute;
+    margin-top: -10vh;
+    margin-left: 10vw;
+    width: clamp(15rem, 30vw, 25rem);
+    height: 8vh;
+    border-radius: 50px;
+    font-size: calc(1rem + 1vw);
+    color: white;
+    background-color: #011321;
+    border: 1px solid #9e9898;
+    z-index: 2;
+    cursor: pointer;
+    transition: border-color 0.7s ease, background-color 0.7s ease;
+}
+
+.main .make-wrapper input[type="submit"]:hover{
+    border-color: white;
+    background-color: rgb(83, 96, 105);
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateX(-5rem);
+    transition: opacity 0.7s ease, transform 1.25s ease;
+}
+
+.shown {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 1s ease, transform 1.25s ease;
+}
+
+.main .complexPlot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 800px;
+    width: 1500px;
+}
+
+.main .plot-expl-wrapper{
+    height: 17rem;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main .plot-expl-wrapper .text {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    position: absolute;
+    margin-bottom: 8rem;
+}
+
+.main .plot-expl-wrapper .text h1{
+    border-radius: 50px;
+    padding: 0.5rem 1rem;
+    color: #00d7fd;
+    background-color: #011321;
+    border: 2px solid rgba(0, 215, 253, 0.5);
+
+    margin-left: -20%;
+    font-size: calc(0.7rem + 1.2vw);
+}
+
+.main .plot-expl-wrapper .plot-expl{
+    height: 8rem;
+    width: 100%;
+    border: 3px solid rgba(0, 215, 253, 0.5);
+    border-radius: 70px;
+    background-color: #011321;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main .plot-expl-wrapper .plot-expl h2{
+    color: white;
+    font-size: calc(1rem + 1.1vw);
+    text-align: center;
+}
+
+.main .buttons {
+    display: none; 
+}
+  
+.main .buttons .up {
+    z-index: 100;
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    border: 3px solid rgba(0, 215, 253, 0.5);
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    width: 5rem;
+    background-color: rgba(0, 215, 253, 0.2);
+    cursor: pointer;
+    transition: width 0.3s ease; 
+    overflow: hidden; 
+}
+
+.main .buttons .up i {
+    color: white;
+    font-size: 2rem;
+}
+
+.main .buttons .up .button-text {
+    opacity: 0;
+    width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    color: white;
+    font-size: 1.5rem;
+    transition: width 0.3s ease, opacity 0.3s ease;
+    margin-left: 0;
+}
+
+.main .buttons .up:hover {
+    width: 12rem; 
+}
+
+.main .buttons .up:hover .button-text {
+    width: 6rem;
+    opacity: 1;
+    margin-left: 1rem; 
+}
+
+.main .next {
+    z-index: 100;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    border: 3px solid rgba(0, 215, 253, 0.5);
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    width: 5rem;
+    background-color: rgba(0, 215, 253, 0.2);
+    cursor: pointer;
+    transition: width 0.3s ease; 
+    overflow: hidden; 
+}
+
+.main .next a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.main .next .button-text {
+    opacity: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    color: white;
+    font-size: 1.5rem;
+    transition: opacity 0.4s ease, margin-right 0.4s ease;
+}
+
+.main .next i {
+    color: white;
+    font-size: 2rem;
+    margin-left: -12.5rem;
+    transition: margin-left 0.4s ease;
+}
+
+.main .next:hover {
+    width: 20rem;
+}
+
+.main .next:hover .button-text {
+    opacity: 1;
+    margin-right: 10px;
+}
+
+.main .next:hover i {
+    margin-left: 10px;
+}
+
+.first-info.shown .text.shown h1[name="secondBox"]{
+    margin-left: -9rem;
+}
+
+
+@media (max-width: 1439px) {
+    .main .first-info {
+        height: 65vh;
+    }
+
+    .main .make-wrapper .make-imag-container {
+        width: 100%;
+    }
+
+    nav .subpages {
+        width: 80%;
+        gap: 1rem;
+    }
+
+    .main .first-info {
+        width: 100%;
+    }
+}
